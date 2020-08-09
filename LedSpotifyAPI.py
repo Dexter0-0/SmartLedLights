@@ -2,61 +2,29 @@ from lxml import html
 import spotipy.util as util
 import spotipy
 import requests
-import random
 import time
 
-###############################################################
 
-def SetColor(RedValue = -1, GreenValue = -1, BlueValue = -1):
-    StartTime = time.time()
+def SetColor(RedValue, GreenValue, BlueValue):
+    try:
+        StartTime = time.time()
 
-    if RedValue == -1 and GreenValue == -1 and BlueValue == -1:
-        RedValue, GreenValue, BlueValue = GetRandomColor()
-
-    Page = "http://89.136.241.70:243/?r" + str(RedValue) + "g" + str(GreenValue) + "b" + str(BlueValue) + "&"
-    html.fromstring(requests.get(Page).content)
-    print("Set Color in", round(time.time() - StartTime, 3), "Seconds > R:", RedValue, "G:", GreenValue, "B:", BlueValue)
+        Page = "http://89.136.241.70:243/?r" + str(RedValue) + "g" + str(GreenValue) + "b" + str(BlueValue) + "&"
+        html.fromstring(requests.get(Page).content)
+        print("Set Color in", round(time.time() - StartTime, 3), "Seconds > R:", RedValue, "G:", GreenValue, "B:", BlueValue)
+    except:
+        print("Error in sending request")
 
 
 def SetAnimation(DelayOne, DelayTwo):
-    StartTime = time.time()
-    Page = "http://89.136.241.70:243/?r256g" + str(DelayOne) + "b" + str(DelayTwo) + "&"
-    html.fromstring(requests.get(Page).content)
-    print("Set Animation in", round(time.time() - StartTime, 3), "Seconds > Delay One:", DelayOne, "Delay Two", DelayTwo)
+    try:
+        StartTime = time.time()
+        Page = "http://89.136.241.70:243/?r256g" + str(DelayOne) + "b" + str(DelayTwo) + "&"
+        html.fromstring(requests.get(Page).content)
+        print("Set Animation in", round(time.time() - StartTime, 3), "Seconds > Delay One:", DelayOne, "Delay Two", DelayTwo)
+    except:
+        print("Error in sending request")
 
-
-def GetRandomColor():
-    PredominantColorOne = random.randint(0, 3)
-    PredominantColorTwo = random.randint(0, 2)
-
-    if PredominantColorOne == 0:
-        RedColor = 255
-        if PredominantColorTwo == 0:
-            GreenColor = random.randint(0, 256)
-            BlueColor = random.randint(0, 50)
-        else:
-            BlueColor = random.randint(0, 256)
-            GreenColor = random.randint(0, 50)
-    elif PredominantColorOne == 2:
-        GreenColor = 255
-        if PredominantColorTwo == 0:
-            RedColor = random.randint(0, 256)
-            BlueColor = random.randint(0, 50)
-        else:
-            BlueColor = random.randint(0, 256)
-            RedColor = random.randint(0, 50)
-    else:
-        BlueColor = 255
-        if PredominantColorTwo == 0:
-            RedColor = random.randint(0, 256)
-            GreenColor = random.randint(0, 50)
-        else:
-            GreenColor = random.randint(0, 256)
-            RedColor = random.randint(0, 50)
-
-    return RedColor, GreenColor, BlueColor
-
-###############################################################
 
 def SpotifyAuth():
     Scope = "user-read-currently-playing"
@@ -66,14 +34,6 @@ def SpotifyAuth():
     RedirectURL = 'https://dexter0-0.github.io/'
     return spotipy.Spotify(auth=util.prompt_for_user_token(Username, Scope, ClientID, ClientSecret, RedirectURL))
 
-
-def PrintSongSections(Sections):
-    for i in range(len(Sections)):
-        print("")
-        print("SECTION", i)
-        print("BPM: ", Sections[i]["tempo"])
-
-###############################################################
 
 def PrintSongInfo(CurrentSongInfo, CurrentSongState, BPM):
     CurrentSongName = CurrentSongInfo["item"]["name"]
@@ -91,7 +51,6 @@ def PrintSongInfo(CurrentSongInfo, CurrentSongState, BPM):
     print("")
     print("You are listening to >", CurrentSongName, "by:", CurrentSongArtist, "with BPM:", BPM, "Current state:", CurrentSongState)
 
-###############################################################
 
 if __name__ == '__main__':
     Spotify = SpotifyAuth()
@@ -163,5 +122,4 @@ if __name__ == '__main__':
                     WhiteColorSet = True
 
             SongUpdateCounter = SongUpdateCounter + 1
-
         time.sleep(0.1)
