@@ -9,7 +9,7 @@ def SetColor(RedValue, GreenValue, BlueValue):
     try:
         StartTime = time.time()
 
-        Page = "http://89.136.241.70:243/?r" + str(RedValue) + "g" + str(GreenValue) + "b" + str(BlueValue) + "&"
+        Page = "http://IP ADDRESS AND PORT/?r" + str(RedValue) + "g" + str(GreenValue) + "b" + str(BlueValue) + "&"
         html.fromstring(requests.get(Page).content)
         print("Set Color in", round(time.time() - StartTime, 3), "Seconds > R:", RedValue, "G:", GreenValue, "B:", BlueValue)
     except:
@@ -19,7 +19,7 @@ def SetColor(RedValue, GreenValue, BlueValue):
 def SetAnimation(DelayOne, DelayTwo):
     try:
         StartTime = time.time()
-        Page = "http://89.136.241.70:243/?r256g" + str(DelayOne) + "b" + str(DelayTwo) + "&"
+        Page = "http://IP ADDRESS AND PORT/?r256g" + str(DelayOne) + "b" + str(DelayTwo) + "&"
         html.fromstring(requests.get(Page).content)
         print("Set Animation in", round(time.time() - StartTime, 3), "Seconds > Delay One:", DelayOne, "Delay Two", DelayTwo)
     except:
@@ -29,8 +29,8 @@ def SetAnimation(DelayOne, DelayTwo):
 def SpotifyAuth():
     Scope = "user-read-currently-playing"
     Username = "Dexter"
-    ClientID = 'ff0e8504320649d9a1fe1e6b0b422ae4'
-    ClientSecret = '537b2f9dc29348b680cc3bdda64bab0d'
+    ClientID = 'CLIENT ID'
+    ClientSecret = 'CLIENT SECRET'
     RedirectURL = 'https://dexter0-0.github.io/'
     return spotipy.Spotify(auth=util.prompt_for_user_token(Username, Scope, ClientID, ClientSecret, RedirectURL))
 
@@ -101,8 +101,7 @@ if __name__ == '__main__':
                     BPM = AudioFeatures["tempo"]
 
                     PrintSongInfo(CurrentSongInfo, CurrentSongState, BPM)
-                    # PrintSongSections(AudioAnalysis)
-
+ 
                     SetAnimation(0, 60000 / BPM)
                     WhiteColorSet = False
 
