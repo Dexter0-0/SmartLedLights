@@ -5,7 +5,7 @@
 const char* ssid = "WIFI SSID";
 const char* password = "WIFI PASSWORD";
 
-WiFiServer server(243);
+WiFiServer server("PORT NUMBER");
 
 bool Animation = false;
 bool MusicMode = true;
