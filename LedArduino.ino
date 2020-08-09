@@ -1,3 +1,5 @@
+//  Disclaimer this is by far the ugliest code i have ever written and im more dissapointed of it than my parents are of myself
+
 #include <ESP8266WiFi.h>
 
 const char* ssid = "WIFI SSID";
