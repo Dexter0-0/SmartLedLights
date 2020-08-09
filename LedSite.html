@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/@jaames/iro"></script>
+
+    <title>Color Changer - by Dexter</title>
+    
+    <h1>Color Changer</h1>
+    <h5>Current Color = R: 0 G: 0 B: 0 | Last Changed: 0 minutes ago by Dexter</h5>
+
+    <div class = "container">
+        <div class = "row">
+            <div class = "wheel" id = "ColorWheel"></div>
+        </div>
+        
+        <div class = "row">
+            <a class = "btn btn-primary btn-lg" href = "?r0g0b0&" id = "ChangeColor" role = "button">Change Color</a>
+        </div>
+    </div>
+
+    <div class = "container">
+        <h3>Music Mode</h3>
+        
+        <div class = "row">
+            <label class = "switch">
+                <input id = "MusicToggle" type = "checkbox" checked>
+                <span class = "slider round"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class = "container">
+        <h3>Animations</h3>
+        
+        <div class = "row">
+            <div class = "col-6">
+                <a class = "btn btn-primary btn-lg" href = "?r256g7.5b0&" id = "FadeAnimation" role = "button">Fade</a>
+            </div>
+
+            <div class = "col-6">
+                <div class = "range-wrap">
+                    <input type = "range" class = "range">
+                    <output class = "bubble"></output>
+                </div>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "col-6">
+                <a class = "btn btn-primary btn-lg" href = "?r257g0b0&" id = "RomanticAnimation" role = "button">Romantic</a>
+            </div>
+
+            <div class = "col-6">
+                <a class = "btn btn-primary btn-lg" href = "?r256g7.5b0&" id = "OtherAnimation" role = "button">Alt mod</a>
+            </div>
+        </div>
+    </div>    
+
+    <div class = "FooterSection">
+    </div>
+</html>
+
+<style>
+    body
+    {
+        background-color: #313131;
+        overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6
+    {
+        margin-top: 1.5%;
+        margin-bottom: 2.5%;
+        text-align: center;
+        color:#0069D9;
+        padding-left: 3%;
+        padding-right: 3%;
+    } 
+    
+    .container
+    {
+        margin-top: 5%;
+    }
+
+    .btn
+    {
+        width: 75%;
+        margin: 2.5% auto;
+        border-radius: 10px;
+        transition: transform 0.2s;
+    }
+
+    .btn:hover
+    {
+        transform: scale(1.1);
+    }
+
+    .row
+    {
+        text-align: center;
+    }
+
+    input
+    {
+        width: 75%;
+        margin: 2.5% auto;
+    }
+
+    input:focus
+    {
+        outline: none;
+    }
+
+    .range-wrap 
+    {   
+        margin: 2.5% auto;
+    }
+    
+    .bubble 
+    {
+        background: #0069D9;
+        color: white;
+        padding: 4px 12px;
+        position: absolute;
+        border-radius: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -20%;
+    }
+    
+    .bubble::after 
+    {
+        overflow-x: auto;
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #0069D9;
+        left: 50%;
+    }
+
+    .slider.round
+    {
+        border-radius: 34px;
+    }
+
+    .slider.round:before 
+    {
+        border-radius: 50%;
+    }
+
+    #ChangeColor
+    {
+        margin-top: 5%;
+        width: 50%;
+    }
+
+    .switch 
+    {   
+        margin: 0 auto;
+        position: relative;
+        display: inline-block;
+        width: 120px;
+        height: 36px;
+    }
+
+    .switch input 
+    { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider 
+    {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before 
+    {
+        position: absolute;
+        content: "";
+        height: 28px;
+        width: 28px;
+        left: 6px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider 
+    {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider 
+    {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before 
+    {
+        -webkit-transform: translateX(82px);
+        -ms-transform: translateX(82px);
+        transform: translateX(82px);
+    }
+
+    #ColorWheel
+    {
+        margin: 0 auto;
+    }
+
+    .FooterSection
+    {
+        margin-top: 20%;
+    }
+
+    @media only screen and (max-width: 800px) 
+    {
+        h1, h2, h3, h4, h5, h6
+        {
+            margin-top: 5%;
+            margin-bottom: 7.5%;
+        }
+
+        .container
+        {
+            margin-top: 10%;
+        }
+
+        .btn, .range-wrap, input
+        {
+            margin: 7.5% auto;
+        }
+
+        #ChangeColor
+        {
+            width: 80%;
+        }
+
+        #ColorWheel
+        {
+            margin: 5% auto;
+        }
+    }
+</style>
+
+<script>
+    var colorWheel = new iro.ColorPicker("#ColorWheel",
+    {
+        color: "rgb(255, 255, 255)",
+        borderWidth: 2,
+        borderColor: '#000000',
+        width: 250,
+    });
+
+    colorWheel.on('color:change', function(color, changes)
+    {
+        var Color = colorWheel.color.rgb;
+        document.getElementById("ChangeColor").href = "?r" + Math.round(Color.r) + "g" +  Math.round(Color.g) + "b" + Math.round(Color.b) + "&";
+        document.getElementById("ChangeColor").innerText = "Change Color to R: " + Math.round(Color.r) + " G: " +  Math.round(Color.g) + " B: " + Math.round(Color.b);
+    });
+
+    const allRanges = document.querySelectorAll(".range-wrap");
+    allRanges.forEach(wrap => 
+    {
+        const range = wrap.querySelector(".range");
+        const bubble = wrap.querySelector(".bubble");
+
+        range.addEventListener("input", () => 
+        {
+            setBubble(range, bubble);
+        });
+        
+        setBubble(range, bubble);
+    });
+
+    function setBubble(range, bubble) 
+    {
+        const val = range.value / 5;
+        const min = range.min ? range.min : 0;
+        const max = range.max ? range.max : 100;
+        const newVal = Number(((val - min) * 75) / (max - min) * 5 + 12.5);
+        
+        bubble.innerHTML = "Fade: " + val + " ms" ;
+        bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+        
+        document.getElementById("FadeAnimation").href="?r256g" + val + "b0&";
+    }
+
+    function ToggleMusicMode() 
+    {
+        var MusicToggle = getElementById("MusicToggle");
+        
+        if (MusicToggle.checked == true)
+        {
+            console.log("checked");
+        }
+        else
+        {
+            console.log("not checked");
+        }
+    }
+</script>
