@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+   
+   <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/@jaames/iro"></script>
+
+    <title>Color Changer - by Dexter</title>
+    
+    <h1>Color Changer</h1>
+    <h5>Current Color = R: 0 G: 0 B: 0 | Last Changed: 0 minutes ago by Dexter</h5>
+
+    <div class = "container">
+        <div class = "row">
+            <div class = "wheel" id = "ColorWheel"></div>
+        </div>
+    </div>
+
+    <div class = "container">
+        <h3>Music Mode</h3>
+        
+        <div class = "row">
+            <label class = "switch">
+                <input id = "MusicToggle" type = "checkbox" checked>
+                <span class = "slider round"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class = "container">
+        <h3>Animations</h3>
+        
+        <div class = "row">
+            <div class = "col-6">
+                <a class = "btn btn-primary btn-lg" href = "?r256g7.5b0&" id = "FadeAnimation" role = "button">Fade</a>
+            </div>
+
+            <div class = "col-6">
+                <div class = "range-wrap">
+                    <input type = "range" class = "range">
+                    <output class = "bubble"></output>
+                </div>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "col-6">
+                <a class = "btn btn-primary btn-lg" href = "?r257g0b0&" id = "RomanticAnimation" role = "button">Romantic</a>
+            </div>
+
+            <div class = "col-6">
+                <a class = "btn btn-primary btn-lg" href = "?r256g7.5b0&" id = "OtherAnimation" role = "button">Alt mod</a>
+            </div>
+        </div>
+    </div>    
+
+    <div class = "FooterSection">
+    </div>
+</html>
